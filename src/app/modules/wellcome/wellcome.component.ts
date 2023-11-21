@@ -14,6 +14,10 @@ import { TranslateModule } from '@ngx-translate/core';
 export default class WellcomeComponent {
   constructor(private _navController: NavController) {}
 
+  onClickLogin(): void {
+    this._navController.navigateForward('/auth');
+  }
+
   onClickAboutMe(): void {
     this._navController.navigateForward('/about-me');
   }

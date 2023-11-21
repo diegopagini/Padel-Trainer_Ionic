@@ -23,7 +23,9 @@
 
     <ion-row class="ion-padding-top ion-justify-content-center">
       <ion-col size="auto">
-        <ion-button>{{ "login" | translate }}</ion-button>
+        <ion-button (click)="onClickLogin()">{{
+          "login" | translate
+        }}</ion-button>
       </ion-col>
     </ion-row>
 

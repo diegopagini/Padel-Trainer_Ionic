@@ -10,4 +10,5 @@ export const environment = {
     messagingSenderId: '14051014041',
     appId: '1:14051014041:web:b3cf3c4cd58d1ea77d8f08',
   },
+  phoneNumber: 34613135819,
 };

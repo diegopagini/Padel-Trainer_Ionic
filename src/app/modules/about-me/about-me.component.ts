@@ -1,6 +1,9 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { IonicModule } from '@ionic/angular';
 import { TranslateModule } from '@ngx-translate/core';
+import { addIcons } from 'ionicons';
+import { logoWhatsapp } from 'ionicons/icons';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-about-me',
@@ -10,4 +13,10 @@ import { TranslateModule } from '@ngx-translate/core';
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [IonicModule, TranslateModule],
 })
-export default class AboutMeComponent {}
+export default class AboutMeComponent {
+  phoneNumber = environment.phoneNumber;
+
+  constructor() {
+    addIcons({ logoWhatsapp });
+  }
+}
