@@ -14,4 +14,4 @@ import {
   imports: [IonHeader, IonToolbar, IonTitle, IonContent],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class HomePage {}
+export default class HomePage {}
