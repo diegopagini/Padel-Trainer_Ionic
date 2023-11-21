@@ -1,0 +1,36 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button
+        defaultHref="wellcome"
+        [text]="'about.back' | translate"
+      />
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding" [fullscreen]="true">
+  <ion-grid>
+    <ion-row class="ion-justify-content-center">
+      <ion-col size="auto">
+        <figure class="ion-padding">
+          <img
+            class="hero-img"
+            srcset="assets/images/wally.jpg"
+            [alt]="'wally' | translate"
+            width="300"
+          />
+          <figcaption class="ion-text-end">
+            {{ "about.figcaption" | translate }}
+          </figcaption>
+        </figure>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col size="auto">
+        <ion-label>{{ "about.text" | translate }}</ion-label>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

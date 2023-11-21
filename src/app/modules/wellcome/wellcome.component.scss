@@ -1,0 +1,14 @@
+.grid {
+  display: flex;
+  flex-direction: column;
+  min-height: 80vh;
+}
+
+.bottom {
+  margin-top: auto;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+}
