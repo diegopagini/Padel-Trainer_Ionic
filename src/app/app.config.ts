@@ -1,6 +1,8 @@
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { ApplicationConfig, importProvidersFrom } from '@angular/core';
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
+import { provideAuth } from '@angular/fire/auth';
+import { AngularFireModule } from '@angular/fire/compat';
 import {
   provideRouter,
   RouteReuseStrategy,
@@ -9,6 +11,7 @@ import {
 import { IonicRouteStrategy } from '@ionic/angular';
 import { provideIonicAngular } from '@ionic/angular/standalone';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { getAuth } from 'firebase/auth';
 import { environment } from 'src/environments/environment';
 
 import { routes } from './app.routes';
@@ -31,7 +34,9 @@ export const appConfig: ApplicationConfig = {
         },
       }),
       // Firebase
-      provideFirebaseApp(() => initializeApp(environment.firebaseConfig))
+      AngularFireModule.initializeApp(environment.firebaseConfig),
+      provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
+      provideAuth(() => getAuth())
     ),
   ],
 };

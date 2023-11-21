@@ -19,6 +19,7 @@ import { addIcons } from 'ionicons';
 import { helpCircleOutline } from 'ionicons/icons';
 
 import { LoginForm } from '../../interfaces/login.interface';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -37,7 +38,11 @@ import { LoginForm } from '../../interfaces/login.interface';
 export class LoginComponent implements OnInit {
   form = signal<FormGroup>(null as any);
 
-  constructor(private _fb: FormBuilder, private _navController: NavController) {
+  constructor(
+    private _authService: AuthService,
+    private _fb: FormBuilder,
+    private _navController: NavController
+  ) {
     addIcons({ helpCircleOutline });
   }
 
@@ -45,10 +50,16 @@ export class LoginComponent implements OnInit {
     this.initForm();
   }
 
-  onSubmit(): void {
+  async onSubmit(): Promise<void> {
     this.setPreferenses();
 
-    this._navController.navigateForward('/home');
+    try {
+      const { user } = await this._authService.login(this.form().value);
+      if (user) {
+        this._authService.setUser(user);
+        this._navController.navigateForward('/home');
+      }
+    } catch (error) {}
   }
 
   private async initForm(): Promise<void> {
