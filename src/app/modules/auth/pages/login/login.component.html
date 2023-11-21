@@ -3,8 +3,8 @@
     <ion-row class="ion-justify-content-center">
       <ion-col size="auto">
         <h1 class="ion-text-center">{{ "login" | translate }}</h1>
-
-        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        @if (form()) {
+        <form [formGroup]="form()" (ngSubmit)="onSubmit()">
           <ion-item class="ion-padding-top">
             <ion-input
               type="email"
@@ -25,12 +25,12 @@
 
           <ion-item lines="none">
             <ion-checkbox formControlName="keep" [labelPlacement]="'end'">
-              {{ "login.keep" }}</ion-checkbox
+              {{ "login.keep" | translate }}</ion-checkbox
             >
           </ion-item>
 
           <ion-button
-            [disabled]="!form.valid"
+            [disabled]="!form().valid"
             class="ion-margin-top"
             type="submit"
             expand="block"
@@ -38,6 +38,7 @@
             {{ "login" | translate }}
           </ion-button>
         </form>
+        }
       </ion-col>
     </ion-row>
   </ion-grid>
