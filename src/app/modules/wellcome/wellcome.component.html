@@ -23,7 +23,7 @@
 
     <ion-row class="ion-padding-top ion-justify-content-center">
       <ion-col size="auto">
-        <ion-button (click)="onClickLogin()">{{
+        <ion-button expand="block" (click)="onClickLogin()">{{
           "login" | translate
         }}</ion-button>
       </ion-col>
@@ -32,9 +32,12 @@
     <ion-row class="ion-padding-top ion-justify-content-center bottom">
       <ion-col size="auto" class="ion-text-center column">
         <ion-label>{{ "wellcome.presentation" | translate }}</ion-label>
-        <ion-button (click)="onClickAboutMe()" class="ion-margin-top">{{
-          "wellcome.about" | translate
-        }}</ion-button>
+        <ion-button
+          expand="block"
+          (click)="onClickAboutMe()"
+          class="ion-margin-top"
+          >{{ "wellcome.about" | translate }}</ion-button
+        >
       </ion-col>
     </ion-row>
   </ion-grid>

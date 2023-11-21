@@ -24,7 +24,10 @@ export class AppComponent implements OnInit {
 
     this._platform.ready().then(async () => {
       const languague = await Device.getLanguageCode();
-      if (languague.value)
+      if (
+        languague.value &&
+        (languague.value.startsWith('en') || languague.value.startsWith('es'))
+      )
         this._translateService.use(languague.value.slice(0, 2));
     });
   }
