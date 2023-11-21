@@ -11,22 +11,35 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 import { Preferences } from '@capacitor/preferences';
-import { IonicModule } from '@ionic/angular';
+import { IonicModule, NavController } from '@ionic/angular';
 import { TranslateModule } from '@ngx-translate/core';
+import { addIcons } from 'ionicons';
+import { helpCircleOutline } from 'ionicons/icons';
+
+import { LoginForm } from '../../interfaces/login.interface';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, TranslateModule, ReactiveFormsModule],
+  imports: [
+    CommonModule,
+    IonicModule,
+    ReactiveFormsModule,
+    RouterModule,
+    TranslateModule,
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LoginComponent implements OnInit {
   form = signal<FormGroup>(null as any);
 
-  constructor(private _fb: FormBuilder) {}
+  constructor(private _fb: FormBuilder, private _navController: NavController) {
+    addIcons({ helpCircleOutline });
+  }
 
   ngOnInit(): void {
     this.initForm();
@@ -34,6 +47,8 @@ export class LoginComponent implements OnInit {
 
   onSubmit(): void {
     this.setPreferenses();
+
+    this._navController.navigateForward('/home');
   }
 
   private async initForm(): Promise<void> {
@@ -44,16 +59,17 @@ export class LoginComponent implements OnInit {
     ]);
 
     this.form.set(
-      this._fb.group({
+      this._fb.group<LoginForm>({
         email: [email?.value || null, [Validators.required, Validators.email]],
-        keep: [keep?.value || false],
+        keep: [Boolean(keep?.value) || false],
         password: [password?.value || null, [Validators.required]],
       })
     );
   }
 
   private async setPreferenses(): Promise<void> {
-    const keepSession = this.form().get('keep')?.value;
+    const keepSession: boolean = this.form().get('keep')?.value;
+
     if (keepSession) {
       await Promise.all([
         Preferences.set({
