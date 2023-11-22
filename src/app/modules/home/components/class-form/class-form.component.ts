@@ -17,6 +17,8 @@ import { AlertService } from 'src/app/shared/services/alert/alert.service';
 import { ToastService } from 'src/app/shared/services/toast/toast.service';
 import { environment } from 'src/environments/environment';
 
+import { ClassesService } from '../../services/classes.service';
+
 @Component({
   selector: 'app-class-form',
   templateUrl: './class-form.component.html',
@@ -34,9 +36,10 @@ export class ClassFormComponent implements OnInit {
 
   constructor(
     private _alertService: AlertService,
+    private _classesService: ClassesService,
     private _fb: FormBuilder,
-    private _translateService: TranslateService,
-    private _toastService: ToastService
+    private _toastService: ToastService,
+    private _translateService: TranslateService
   ) {}
 
   ngOnInit(): void {
