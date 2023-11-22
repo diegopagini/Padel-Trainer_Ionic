@@ -6,6 +6,7 @@ import { addIcons } from 'ionicons';
 import {
   addCircleOutline,
   calendarOutline,
+  callOutline,
   listOutline,
   logOutOutline,
   logoWhatsapp,
@@ -40,6 +41,7 @@ export default class HomePage {
     addIcons({
       addCircleOutline,
       calendarOutline,
+      callOutline,
       listOutline,
       logOutOutline,
       logoWhatsapp,

@@ -60,7 +60,7 @@ export class ClassesService {
     const classes: PaddleClass[] = [];
     snapshot.forEach((child) => {
       const data = child.val() as PaddleClass;
-      classes.unshift(data);
+      classes.push(data);
     });
     return classes;
   }

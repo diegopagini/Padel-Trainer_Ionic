@@ -1,18 +1,32 @@
-@if (classes()) { @for (item of classes(); track item.id) {
-<ion-card class="ion-padding" [ngClass]="{ 'not-finished': !item.finished }">
-  <ion-card-title>
-    <ion-icon name="calendar-outline"></ion-icon>
-    {{ item.date | date : "dd-MM-yyyy" }}</ion-card-title
-  >
-  <ion-card-title>
-    <ion-icon name="time-outline"></ion-icon>
-    {{ item.date | date : "HH:mm" }}</ion-card-title
-  >
-</ion-card>
-} @empty {
-<ion-item>
-  <ion-label class="ion-text-wrap ion-text-center">
-    {{ "classes.empty" | translate }}</ion-label
-  >
-</ion-item>
-} }
+@if (classes()) {
+<ion-list>
+  @for (item of classes(); track item.id) {
+  <ion-card class="ion-padding" [ngClass]="{ 'not-finished': !item.finished }">
+    <ion-card-content>
+      <ion-card-title>
+        <ion-icon name="calendar-outline"></ion-icon>
+        {{ item.date | date : "dd-MM-yyyy" }}</ion-card-title
+      >
+      <ion-card-title>
+        <ion-icon name="time-outline"></ion-icon>
+        {{ item.date | date : "HH:mm" }}</ion-card-title
+      >
+    </ion-card-content>
+    @if (isAdmin()) {
+    <ion-card-header>
+      <ion-card-title>
+        <ion-icon name="call-outline"></ion-icon>
+        {{ item.phone }}
+      </ion-card-title>
+    </ion-card-header>
+    }
+  </ion-card>
+  } @empty {
+  <ion-item>
+    <ion-label class="ion-text-wrap ion-text-center">
+      {{ "classes.empty" | translate }}</ion-label
+    >
+  </ion-item>
+  }
+</ion-list>
+}
