@@ -52,12 +52,21 @@ export class ClassFormComponent implements OnInit {
     this._alertService.showAlert({
       header: 'form.header',
       message: 'form.message',
-      confirmHandler: () => {
-        this._toastService.showToast({
-          message: 'form.class.created',
-        });
+      confirmHandler: async () => {
+        try {
+          await this._classesService.createClass(this.form().value);
 
-        this.initForm();
+          this._toastService.showToast({
+            message: 'form.class.created',
+          });
+
+          this.initForm();
+        } catch (error) {
+          console.error(error);
+          this._toastService.showToast({
+            message: 'form.class.error',
+          });
+        }
       },
     });
   }

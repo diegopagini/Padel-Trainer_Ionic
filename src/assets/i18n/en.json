@@ -17,6 +17,7 @@
   "common.phone.placeholder": "Your phone number",
   "common.phone": "Phone",
   "form.class.created": "Your class has been booked",
+  "form.class.error": "An error has occurred",
   "form.header": "Book a class",
   "form.message": "Are you sure that you wanna book a class?",
   "form.title": "Book your class",

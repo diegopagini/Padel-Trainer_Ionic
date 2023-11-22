@@ -17,6 +17,7 @@
   "common.phone.placeholder": "Tu número de teléfono",
   "common.phone": "Telefono",
   "form.class.created": "Tu clase ha sido reservada",
+  "form.class.error": "Se ha producido un error",
   "form.header": "Reserva una clase",
   "form.message": "¿Estás seguro de que quieres reservar una clase?",
   "form.title": "Reserva tu clase",
