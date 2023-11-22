@@ -37,7 +37,14 @@ export class ClassListComponent implements OnInit {
     const data = await this._classesService.getClasses();
     const classes = this._classesService
       .transformClasses(data)
-      .filter((el) => el.user.id === user.uid);
+      .filter((el) => el.user.id === user.uid)
+      .map((item) => ({ ...item, finished: this.checkClassFinished(item) }));
     this.classes.set(classes);
+  }
+
+  private checkClassFinished(item: PaddleClass): boolean {
+    const date = new Date(item.date);
+    const now = new Date();
+    return date > now;
   }
 }

@@ -1,22 +1,18 @@
-@if (classes()) {
-<ion-item-group>
-  @for (item of classes(); track item.id) {
-  <ion-item>
-    <ion-label>
-      <ion-icon name="calendar-outline"></ion-icon>
-      {{ item.date | date : "dd-MM-yyyy" }}</ion-label
-    >
-    <ion-label>
-      <ion-icon name="time-outline"></ion-icon>
-      {{ item.date | date : "HH:mm" }}</ion-label
-    >
-  </ion-item>
-  } @empty {
-  <ion-item>
-    <ion-label class="ion-text-wrap ion-text-center">
-      {{ "classes.empty" | translate }}</ion-label
-    >
-  </ion-item>
-  }
-</ion-item-group>
-}
+@if (classes()) { @for (item of classes(); track item.id) {
+<ion-card class="ion-padding" [ngClass]="{ 'not-finished': !item.finished }">
+  <ion-card-title>
+    <ion-icon name="calendar-outline"></ion-icon>
+    {{ item.date | date : "dd-MM-yyyy" }}</ion-card-title
+  >
+  <ion-card-title>
+    <ion-icon name="time-outline"></ion-icon>
+    {{ item.date | date : "HH:mm" }}</ion-card-title
+  >
+</ion-card>
+} @empty {
+<ion-item>
+  <ion-label class="ion-text-wrap ion-text-center">
+    {{ "classes.empty" | translate }}</ion-label
+  >
+</ion-item>
+} }
