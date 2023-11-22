@@ -29,6 +29,7 @@ import { ClassesService } from '../../services/classes.service';
 })
 export class ClassFormComponent implements OnInit {
   availableHours = '08,09,10,11,12,13,14,15,16,17,18,19,20,21';
+  notAvailableClasses = signal<any[]>([]);
   form = signal<FormGroup>(null as any);
   localLanguage: string;
   minDate: string;
@@ -45,6 +46,7 @@ export class ClassFormComponent implements OnInit {
   ngOnInit(): void {
     this.minDate = this.getMinDate();
     this.localLanguage = this._translateService.currentLang;
+    this.setClasses();
     this.initForm();
   }
 
@@ -60,6 +62,7 @@ export class ClassFormComponent implements OnInit {
             message: 'form.class.created',
           });
 
+          this.setClasses();
           this.initForm();
         } catch (error) {
           console.error(error);
@@ -89,5 +92,15 @@ export class ClassFormComponent implements OnInit {
     today.setSeconds(0);
     today.setMilliseconds(0);
     return today.toISOString().split('.')[0];
+  }
+
+  private async setClasses(): Promise<void> {
+    const data = await this._classesService.getClasses();
+    this.notAvailableClasses.set(
+      this._classesService.transformClasses(data).map((el) => ({
+        date: el.date.slice(0, 10),
+        backgroundColor: '#c8e5d0',
+      }))
+    );
   }
 }

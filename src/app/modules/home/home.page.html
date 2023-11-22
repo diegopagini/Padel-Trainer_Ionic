@@ -6,9 +6,24 @@
         <ion-label> {{"logout" | translate}} </ion-label>
       </ion-button>
     </ion-buttons>
+
+    <ion-buttons slot="start">
+      <ion-button (click)="toggleClassesView()" class="ion-padding">
+        <ion-icon
+          [name]="seeClaases() ?  'add-circle-outline' :'list-outline'"
+        />
+        <ion-label>
+          {{ (seeClaases() ?'classes.create' : "classes") | translate}}
+        </ion-label>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content class="ion-padding" [fullscreen]="true">
+  @if (seeClaases()) {
+  <app-class-list />
+  } @else {
   <app-class-form />
+  }
 </ion-content>

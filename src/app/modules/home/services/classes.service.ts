@@ -1,7 +1,15 @@
 import { Injectable } from '@angular/core';
 import { FirebaseApp } from '@angular/fire/app';
 import { Database } from '@angular/fire/database';
-import { getDatabase, push, ref, set } from 'firebase/database';
+import {
+  DataSnapshot,
+  get,
+  getDatabase,
+  push,
+  query,
+  ref,
+  set,
+} from 'firebase/database';
 
 import { AuthService } from '../../auth/services/auth.service';
 import { PaddleClass } from '../interfaces/paddle-class.interface';
@@ -41,5 +49,19 @@ export class ClassesService {
         reject(false);
       }
     });
+  }
+
+  getClasses(): Promise<DataSnapshot> {
+    const queryDB = query(ref(this.database, 'classes'));
+    return get(queryDB);
+  }
+
+  transformClasses(snapshot: DataSnapshot): PaddleClass[] {
+    const classes: PaddleClass[] = [];
+    snapshot.forEach((child) => {
+      const data = child.val() as PaddleClass;
+      classes.unshift(data);
+    });
+    return classes;
   }
 }
