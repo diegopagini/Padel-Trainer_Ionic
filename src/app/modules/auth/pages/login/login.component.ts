@@ -15,8 +15,7 @@ import { RouterModule } from '@angular/router';
 import { Preferences } from '@capacitor/preferences';
 import { IonicModule, NavController } from '@ionic/angular';
 import { TranslateModule } from '@ngx-translate/core';
-import { addIcons } from 'ionicons';
-import { helpCircleOutline } from 'ionicons/icons';
+import { ToastService } from 'src/app/shared/services/toast/toast.service';
 
 import { LoginForm } from '../../interfaces/login.interface';
 import { AuthService } from '../../services/auth.service';
@@ -41,10 +40,9 @@ export class LoginComponent implements OnInit {
   constructor(
     private _authService: AuthService,
     private _fb: FormBuilder,
-    private _navController: NavController
-  ) {
-    addIcons({ helpCircleOutline });
-  }
+    private _navController: NavController,
+    private _toastService: ToastService
+  ) {}
 
   ngOnInit(): void {
     this.initForm();
@@ -59,7 +57,10 @@ export class LoginComponent implements OnInit {
         this._authService.setUser(user);
         this._navController.navigateForward('/home');
       }
-    } catch (error) {}
+    } catch (error) {
+      console.error(error);
+      this._toastService.showToast({ message: 'login.error' });
+    }
   }
 
   private async initForm(): Promise<void> {
