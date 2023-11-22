@@ -58,7 +58,7 @@ export class LoginComponent implements OnInit {
         this._navController.navigateForward('/home');
       }
     } catch (error) {
-      console.error(error);
+      console.error({ error });
       this._toastService.showToast({ message: 'login.error' });
     }
   }

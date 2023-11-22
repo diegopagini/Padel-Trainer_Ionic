@@ -1,0 +1,67 @@
+<ion-grid class="form">
+  <ion-row class="ion-margin-bottom">
+    <ion-col size="auto">
+      <ion-title class="ion-text-center">{{
+        "form.title" | translate
+      }}</ion-title>
+
+      @if (form()) {
+      <form
+        class="ion-padding-top"
+        [formGroup]="form()"
+        (ngSubmit)="onSubmit()"
+      >
+        <ion-item>
+          <ion-datetime
+            [hourValues]="availableHours"
+            [locale]="localLanguage"
+            [min]="minDate"
+            formControlName="date"
+            hourCycle="h24"
+            minuteValues="00"
+            presentation="date-time"
+          />
+        </ion-item>
+
+        <ion-item>
+          <ion-input
+            [label]="'common.phone' | translate"
+            [placeholder]="'common.phone.placeholder' | translate"
+            formControlName="phone"
+            type="phone"
+          />
+        </ion-item>
+
+        <ion-item>
+          <ion-textarea
+            [label]="'common.comment' | translate"
+            [placeholder]="'common.comment.placeholder' | translate"
+            formControlName="comment"
+          />
+        </ion-item>
+
+        <ion-button
+          [disabled]="!form().valid"
+          class="ion-margin-top"
+          expand="block"
+          type="submit"
+          >{{ "form.title" | translate }}</ion-button
+        >
+      </form>
+      }
+    </ion-col>
+  </ion-row>
+
+  <ion-row class="ion-margin-top">
+    <ion-col size="auto">
+      <a
+        class="whatsapp"
+        [href]="'https://wa.me/' + phoneNumber"
+        target="_blank"
+      >
+        <ion-label>{{ "form.whatsapp" | translate }}</ion-label>
+        <ion-icon size="large" name="logo-whatsapp" />
+      </a>
+    </ion-col>
+  </ion-row>
+</ion-grid>

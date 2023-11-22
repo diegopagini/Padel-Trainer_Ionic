@@ -5,6 +5,7 @@ import {
   createUserWithEmailAndPassword,
   getAuth,
   signInWithEmailAndPassword,
+  signOut,
   User,
   UserCredential,
 } from 'firebase/auth';
@@ -29,6 +30,10 @@ export class AuthService {
 
   login({ email, password }: LoginFormData): Promise<UserCredential> {
     return signInWithEmailAndPassword(this.auth, email, password);
+  }
+
+  logout(): Promise<void> {
+    return signOut(this.auth);
   }
 
   setUser(user: User): void {
