@@ -62,6 +62,12 @@ export class ClassesService {
       const data = child.val() as PaddleClass;
       classes.push(data);
     });
-    return classes;
+
+    const sorted = classes.sort(
+      (a: PaddleClass, b: PaddleClass) =>
+        new Date(a.date).valueOf() - new Date(b.date).valueOf()
+    );
+
+    return sorted;
   }
 }

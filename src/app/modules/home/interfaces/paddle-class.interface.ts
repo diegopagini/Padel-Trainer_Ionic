@@ -11,3 +11,9 @@ interface AppUser {
   id: string;
   email: string;
 }
+
+export interface SimplifiedClass {
+  backgroundColor: string;
+  date: string;
+  hour: string;
+}

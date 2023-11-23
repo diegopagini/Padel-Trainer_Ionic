@@ -13,7 +13,7 @@
       >
         <ion-item>
           <ion-datetime
-            [hourValues]="availableHours"
+            [hourValues]="availableHours()"
             [locale]="localLanguage"
             [min]="minDate"
             [highlightedDates]="notAvailableClasses()"
