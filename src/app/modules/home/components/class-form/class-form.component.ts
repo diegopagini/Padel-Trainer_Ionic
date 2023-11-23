@@ -73,6 +73,7 @@ export class ClassFormComponent implements OnInit, OnDestroy {
 
           this.setClasses();
           this.initForm();
+          this.filterAvailableHours();
         } catch (error) {
           console.error(error);
           this._toastService.showToast({
@@ -104,8 +105,6 @@ export class ClassFormComponent implements OnInit, OnDestroy {
   }
 
   private async setClasses(): Promise<void> {
-    console.log('setClasses');
-
     const data = await this._classesService.getClasses();
     this.notAvailableClasses.set(
       this._classesService.transformClasses(data).map((el: PaddleClass) => ({
