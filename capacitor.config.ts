@@ -5,8 +5,16 @@ const config: CapacitorConfig = {
   appName: 'padel-trainer',
   webDir: 'www',
   server: {
-    androidScheme: 'https'
-  }
+    androidScheme: 'https',
+  },
+  plugins: {
+    PushNotifications: {
+      presentationOptions: ['badge', 'sound', 'alert'],
+    },
+    CapacitorHttp: {
+      enabled: false,
+    },
+  },
 };
 
 export default config;

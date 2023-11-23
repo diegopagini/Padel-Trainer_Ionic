@@ -16,6 +16,7 @@ import { IonicModule } from '@ionic/angular';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { Subject, takeUntil } from 'rxjs';
 import { AlertService } from 'src/app/shared/services/alert/alert.service';
+import { NotificationsService } from 'src/app/shared/services/notifications/notifications.service';
 import { ToastService } from 'src/app/shared/services/toast/toast.service';
 import { environment } from 'src/environments/environment';
 
@@ -47,6 +48,7 @@ export class ClassFormComponent implements OnInit, OnDestroy {
     private _alertService: AlertService,
     private _classesService: ClassesService,
     private _fb: FormBuilder,
+    private _notificationsService: NotificationsService,
     private _toastService: ToastService,
     private _translateService: TranslateService
   ) {}
@@ -74,6 +76,12 @@ export class ClassFormComponent implements OnInit, OnDestroy {
           this.setClasses();
           this.initForm();
           this.filterAvailableHours();
+          const response = await this._notificationsService.sendNotification(
+            'New Class',
+            JSON.stringify(this.form().value)
+          );
+
+          console.log(response);
         } catch (error) {
           console.error(error);
           this._toastService.showToast({

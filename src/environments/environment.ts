@@ -12,4 +12,6 @@ export const environment = {
   },
   phoneNumber: 34613135819,
   adminId: 'HOLA5iBOwVge66iIrzu8r99mMQ82',
+  serverKey:
+    'AAAAA0WBdZk:APA91bHkNN-_LOIqoCM7mvZu3zcvpVmYyxJ0cu9-L3NBN97nBOdiCRDNseg2g0NmWn3KNS8PqkMGLQK48-9JKcoFX2fxS414AjubLbEe1G7ZwUzqQ6hf_1XVe4lvp7fErpPo0NoAboTZ',
 };
