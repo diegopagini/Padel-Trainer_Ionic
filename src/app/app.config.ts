@@ -9,7 +9,7 @@ import {
   RouteReuseStrategy,
   withViewTransitions,
 } from '@angular/router';
-import { IonicRouteStrategy } from '@ionic/angular';
+import { IonicRouteStrategy, IonicModule } from '@ionic/angular';
 import { provideIonicAngular } from '@ionic/angular/standalone';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { getAuth } from 'firebase/auth';
@@ -27,6 +27,7 @@ export const appConfig: ApplicationConfig = {
     // Angular
     provideRouter(routes, withViewTransitions()),
     importProvidersFrom(
+      IonicModule.forRoot(),
       HttpClientModule,
       TranslateModule.forRoot({
         loader: {
