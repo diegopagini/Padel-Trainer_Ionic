@@ -13,7 +13,15 @@
     <ion-row>
       <ion-col>
         <swiper-container slides-per-view="1" autoplay="true" loop>
-          @for (item of images; track $index) {
+          @for (item of imagesEven; track $index) {
+          <swiper-slide>
+            <img [src]="'assets/images/' + item + '.jpg'" />
+          </swiper-slide>
+          }
+        </swiper-container>
+
+        <swiper-container slides-per-view="1" autoplay="true" loop>
+          @for (item of imagesOdd; track $index) {
           <swiper-slide>
             <img [src]="'assets/images/' + item + '.jpg'" />
           </swiper-slide>

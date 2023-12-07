@@ -5,7 +5,7 @@ import {
   OnInit,
   signal,
 } from '@angular/core';
-import { IonicModule } from '@ionic/angular';
+import { IonicModule, RefresherCustomEvent } from '@ionic/angular';
 import { TranslateModule } from '@ngx-translate/core';
 import { User } from 'firebase/auth';
 import { AuthService } from 'src/app/modules/auth/services/auth.service';
@@ -36,6 +36,14 @@ export class ClassListComponent implements OnInit {
     this.user.set(this._authService.getUser());
     this.isAdmin.set(environment.adminId === this.user().uid);
     this.getClassesById();
+  }
+
+  handleRefresh(event: RefresherCustomEvent): void {
+    this.getClassesById();
+
+    setTimeout(() => {
+      event.target.complete();
+    }, 1500);
   }
 
   private async getClassesById(): Promise<void> {

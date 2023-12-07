@@ -20,8 +20,8 @@ register();
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export default class WellcomeComponent {
-  images: string[] = ['1', '2', '3', '4', '5', '6', '8', '9', '10'];
-
+  imagesEven: string[] = ['1', '3', '5', '9'];
+  imagesOdd: string[] = ['2', '4', '6', '8', '10'];
   constructor(private _navController: NavController) {}
 
   onClickLogin(): void {

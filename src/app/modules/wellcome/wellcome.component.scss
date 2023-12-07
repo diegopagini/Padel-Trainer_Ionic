@@ -1,3 +1,8 @@
+ion-content {
+  --background: var(--ion-color-light-contrast);
+  --color: var(--ion-color-light);
+}
+
 .grid {
   display: flex;
   flex-direction: column;
@@ -12,4 +17,8 @@
 .column {
   display: flex;
   flex-direction: column;
+}
+
+swiper-slide {
+  max-height: 250px;
 }

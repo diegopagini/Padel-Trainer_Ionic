@@ -1,3 +1,7 @@
+<ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event)">
+  <ion-refresher-content></ion-refresher-content>
+</ion-refresher>
+
 @if (classes()) {
 <ion-list>
   @for (item of classes(); track item.id) {
